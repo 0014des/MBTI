@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MBTI診断テスト</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #e0f7fa, #80deea);
+      color: #333;
+    }
+    .container {
+      max-width: 500px;
+      margin: 50px auto;
+      padding: 20px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      padding: 24px;
+      animation: fadeIn 0.6s ease-in-out;
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 20px;
+      border: none;
+      background: #00acc1;
+      color: #fff;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .btn:hover {
+      background: #00838f;
+      transform: scale(1.05);
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    .hidden {
+      display: none;
+    }
+    .fade-in {
+      animation: fadeIn 1s ease-in-out;
+    }
+    .result-img {
+      width: 100%;
+      max-width: 300px;
+      display: block;
+      margin: 0 auto 20px;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="fade-in">MBTI診断テスト</h1>
+    <div id="start-screen" class="card">
+      <label for="username">名前を入力してください:</label>
+      <input type="text" id="username" placeholder="あなたの名前" />
+      <button id="start-btn" class="btn">診断を開始</button>
+    </div>
+
+    <div id="question-screen" class="card hidden">
+      <div id="question-number"></div>
+      <div id="question-text"></div>
+      <div id="choices"></div>
+    </div>
+
+    <div id="result-screen" class="card hidden">
+      <h2 id="result-title"></h2>
+      <img id="result-image" src="" alt="MBTIタイプ" class="result-img" />
+      <p id="result-description"></p>
+      <button id="restart-btn" class="btn">もう一度診断する</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
