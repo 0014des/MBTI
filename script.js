@@ -141,13 +141,28 @@ function showResult() {
   resultImage.alt = `${mbtiType}のイメージ`;
 
   // 説明文（適宜追加してください）
-  const descriptions = {
-    ISTJ: "責任感が強く、現実的な実務家タイプ。",
-    INFP: "理想主義で内向的な仲介者。",
-    ENTP: "独創的で議論好きな起業家。",
+  const mbtiDescriptions = {
+  ISTJ: "責任感が強く、現実的な実務家タイプ。",
+  ISFJ: "思いやりがあり、忠実な保護者タイプ。",
+  INFJ: "直感的で洞察力に富んだ理想主義者。",
+  INTJ: "戦略的で独立心の強い計画者。",
+  ISTP: "柔軟で冷静な実践者タイプ。",
+  ISFP: "穏やかで感受性豊かな芸術家。",
+  INFP: "理想主義で内向的な仲介者。",
+  INTP: "分析的で好奇心旺盛な論理学者。",
+  ESTP: "行動的で現実主義な冒険家タイプ。",
+  ESFP: "社交的で陽気なエンターテイナー。",
+  ENFP: "情熱的で創造力豊かな広報担当者。",
+  ENTP: "独創的で議論好きな起業家。",
+  ESTJ: "現実的でリーダーシップのある管理者。",
+  ESFJ: "協調的で世話好きなホスピタリティタイプ。",
+  ENFJ: "人を導くカリスマ性のある教師。",
+  ENTJ: "決断力があり戦略に優れた指導者。"
+};
+
     // 16タイプすべて用意してください
-  };
-  resultDescription.textContent = descriptions[mbtiType] || "このタイプの説明はありません。";
+ 
+  resultDescription.textContent = mbtiDescriptions[mbtiType] || "このタイプの説明はありません。";
 
   saveHistory(mbtiType);
 }
@@ -163,4 +178,15 @@ function saveHistory(type) {
   history.unshift({ name: username, type, date: new Date().toLocaleString() });
   localStorage.setItem("mbtiHistory", JSON.stringify(history.slice(0, 10)));
 }
+const mbtiColors = {
+  ISTJ: "#4B6587", ISFJ: "#A3C4BC", INFJ: "#735D78", INTJ: "#2D132C",
+  ISTP: "#1B1B2F", ISFP: "#6A0572", INFP: "#6F1E51", INTP: "#3D3B8E",
+  ESTP: "#FF6B6B", ESFP: "#FFA41B", ENFP: "#E17055", ENTP: "#00B894",
+  ESTJ: "#2C3A47", ESFJ: "#45A29E", ENFJ: "#0984E3", ENTJ: "#2D3436"
+};
+
+resultScreen.style.backgroundColor = mbtiColors[mbtiType] || "#ffffff";
+// showQuestion内の最後
+questionTextElem.classList.add("fade-in");
+setTimeout(() => questionTextElem.classList.remove("fade-in"), 500);
 
