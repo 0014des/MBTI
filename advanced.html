@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBTI簡易診断 - 上級</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- スタート画面 -->
+        <div id="start-screen" class="screen">
+            <h1>MBTI簡易診断 - 上級 (60問)</h1>
+            <p>あなたの名前を入力して診断を始めましょう。</p>
+            <input type="text" id="username" placeholder="あなたの名前" required>
+            <button id="start-btn" class="btn">診断開始</button>
+        </div>
+
+        <!-- 質問画面 -->
+        <div id="question-screen" class="screen hidden">
+            <p id="question-number"></p>
+            <h2 id="question-text" class="fade-in"></h2>
+            <div id="choices" class="choices-grid">
+                <!-- 選択肢ボタンはJavaScriptで生成されます -->
+            </div>
+        </div>
+
+        <!-- 結果画面 -->
+        <div id="result-screen" class="screen hidden">
+            <h2 id="result-title"></h2>
+            <img id="result-image" src="" alt="MBTIタイプイメージ">
+            <p id="result-description"></p>
+            <button id="restart-btn" class="btn">もう一度診断する</button>
+            <a href="index.html" class="btn back-to-home-btn">ホームに戻る</a>
+        </div>
+    </div>
+
+    <!-- JavaScriptファイル -->
+    <script src="questions-advanced.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,93 +1,72 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MBTI診断テスト</title>
-  <link rel="stylesheet" href="style.css" />
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #e0f7fa, #80deea);
-      color: #333;
-    }
-    .container {
-      max-width: 500px;
-      margin: 50px auto;
-      padding: 20px;
-    }
-    .card {
-      background: #fff;
-      border-radius: 16px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-      padding: 24px;
-      animation: fadeIn 0.6s ease-in-out;
-    }
-    .btn {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 12px 20px;
-      border: none;
-      background: #00acc1;
-      color: #fff;
-      font-weight: bold;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background 0.3s, transform 0.2s;
-    }
-    .btn:hover {
-      background: #00838f;
-      transform: scale(1.05);
-    }
-    input[type="text"] {
-      width: 100%;
-      padding: 10px;
-      margin-top: 10px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-    }
-    .hidden {
-      display: none;
-    }
-    .fade-in {
-      animation: fadeIn 1s ease-in-out;
-    }
-    .result-img {
-      width: 100%;
-      max-width: 300px;
-      display: block;
-      margin: 0 auto 20px;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBTI簡易診断</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h1 class="fade-in">MBTI診断テスト</h1>
-    <div id="start-screen" class="card">
-      <label for="username">名前を入力してください:</label>
-      <input type="text" id="username" placeholder="あなたの名前" />
-      <button id="start-btn" class="btn">診断を開始</button>
+    <div class="container welcome-screen">
+        <h1>MBTI簡易診断</h1>
+        <p>あなたの性格タイプを診断しましょう！</p>
+        <div class="level-selection">
+            <h2>診断レベルを選択してください</h2>
+            <a href="beginner.html" class="btn level-btn">初級 (20問)</a>
+            <a href="intermediate.html" class="btn level-btn">中級 (40問)</a>
+            <a href="advanced.html" class="btn level-btn">上級 (60問)</a>
+        </div>
+
+        <button id="toggle-history-btn" class="btn back-to-home-btn">診断履歴を表示</button>
+
+        <div id="history-section" class="hidden"> <!-- 初期状態で非表示 -->
+            <h2 class="history-title">過去の診断履歴</h2>
+            <div id="history-list">
+                <!-- 履歴はJavaScriptでここに挿入されます -->
+            </div>
+        </div>
+
+        <!-- 利用規約へのリンクを追加 -->
+        <div class="footer-links">
+            <a href="terms.html" class="text-link">利用規約</a>
+        </div>
     </div>
 
-    <div id="question-screen" class="card hidden">
-      <div id="question-number"></div>
-      <div id="question-text"></div>
-      <div id="choices"></div>
-    </div>
+    <script>
+        // index.html用の履歴表示ロジック
+        function displayHistoryForIndex() {
+            const historyListElem = document.getElementById("history-list");
+            const history = JSON.parse(localStorage.getItem("mbtiHistory") || "[]");
+            historyListElem.innerHTML = ""; // 既存の内容をクリア
 
-    <div id="result-screen" class="card hidden">
-      <h2 id="result-title"></h2>
-      <img id="result-image" src="" alt="MBTIタイプ" class="result-img" />
-      <p id="result-description"></p>
-      <button id="restart-btn" class="btn">もう一度診断する</button>
-    </div>
-  </div>
+            if (history.length === 0) {
+                historyListElem.innerHTML += "<p>診断履歴はありません。</p>";
+                return;
+            }
+            const ul = document.createElement("ul");
+            history.forEach(item => {
+                const li = document.createElement("li");
+                li.textContent = `${item.date}: ${item.name} - ${item.type}`;
+                ul.appendChild(li);
+            });
+            historyListElem.appendChild(ul);
+        }
 
-  <script src="script.js"></script>
+        document.addEventListener("DOMContentLoaded", () => {
+            displayHistoryForIndex(); // ページロード時に履歴を読み込み
+            const toggleHistoryBtn = document.getElementById("toggle-history-btn");
+            const historySection = document.getElementById("history-section");
+
+            toggleHistoryBtn.addEventListener("click", () => {
+                historySection.classList.toggle("hidden"); // hiddenクラスをトグル
+                if (historySection.classList.contains("hidden")) {
+                    toggleHistoryBtn.textContent = "診断履歴を表示";
+                } else {
+                    toggleHistoryBtn.textContent = "診断履歴を隠す";
+                    displayHistoryForIndex(); // 表示時に最新の履歴を再読み込み
+                }
+            });
+        });
+    </script>
 </body>
 </html>

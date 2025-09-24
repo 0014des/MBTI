@@ -1,129 +1,310 @@
+/* General Styles */
 body {
-  margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #e0f7fa, #80deea);
-  color: #333;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7f6;
+    color: #333;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* 上部に寄せることで長いコンテンツに対応 */
+    min-height: 100vh;
+    padding: 30px; /* 全体のパディングを増やす */
+    box-sizing: border-box;
+    line-height: 1.8; /* 行間を広げる */
+    font-size: 18px; /* 基本フォントサイズを大きく */
 }
 
 .container {
-  max-width: 500px;
-  margin: 50px auto;
-  padding: 20px;
+    background-color: #ffffff;
+    padding: 50px; /* パディングを増やす */
+    border-radius: 15px; /* 角を少し丸く */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* 影を濃くする */
+    max-width: 900px; /* 最大幅を広く */
+    width: 100%;
+    text-align: center;
+    margin: auto; /* 中央寄せ */
+    margin-top: 30px; /* 上部に寄せる際に少しマージン */
+    margin-bottom: 30px;
 }
 
-.card {
-  background: #fff;
-  border-radius: 16px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-  padding: 24px;
-  animation: fadeIn 0.6s ease-in-out;
-}
-
-h1, h2 {
-  text-align: center;
-  margin-bottom: 24px;
-  user-select: none;
-}
-
-#question-number {
-  font-weight: bold;
-  margin-bottom: 8px;
-  user-select: none;
-}
-
-#question-text {
-  font-size: 1.2rem;
-  margin-bottom: 20px;
-  min-height: 60px;
-}
-
-.btn {
-  display: inline-block;
-  padding: 12px 24px;
-  margin: 8px 8px 8px 0;
-  border: none;
-  border-radius: 12px;
-  background-color: #00acc1;
-  color: #fff;
-  font-weight: 600;
-  cursor: pointer;
-  transition:
-    background-color 0.3s ease,
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
-  user-select: none;
-}
-
-.btn:hover {
-  background-color: #00838f;
-  transform: scale(1.05);
-  box-shadow: 0 6px 12px rgba(0, 131, 143, 0.6);
-}
-
-.btn:active {
-  transform: scale(0.95);
-  box-shadow: none;
-  background-color: #006064;
-}
-
-.choice-btn {
-  width: 100%;
-  text-align: left;
-  font-size: 1rem;
-  padding-left: 16px;
-  position: relative;
-}
-
-.choice-btn::before {
-  content: '→';
-  position: absolute;
-  left: 8px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #00acc1;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.choice-btn:hover::before {
-  opacity: 1;
+.screen {
+    transition: opacity 0.5s ease-in-out;
 }
 
 .hidden {
-  display: none;
+    display: none;
+    opacity: 0;
 }
 
-.result-img {
-  display: block;
-  max-width: 250px;
-  margin: 0 auto 16px;
-  border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
-  animation: fadeIn 0.8s ease forwards;
+/* Headings */
+h1 {
+    color: #2c3e50;
+    font-size: 3.2em; /* 非常に大きく */
+    margin-bottom: 30px;
+}
+
+h2 {
+    color: #34495e;
+    font-size: 2.2em; /* 大きく */
+    margin-bottom: 35px;
+}
+
+h3 {
+    color: #555;
+    font-size: 1.6em; /* 大きく */
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 1.2em; /* 少し大きく */
+    margin-bottom: 20px;
+}
+
+/* Input Field */
+input[type="text"] {
+    width: calc(100% - 40px); /* パディング分調整 */
+    padding: 15px; /* パディングを増やす */
+    margin-bottom: 30px;
+    border: 2px solid #ccc; /* 枠線を太く */
+    border-radius: 10px; /* 角を丸く */
+    font-size: 1.1em; /* フォントサイズを大きく */
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.08); /* 影を深く */
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    background-color: #3498db;
+    color: white;
+    padding: 15px 30px; /* パディングを増やす */
+    border: none;
+    border-radius: 10px; /* 角を丸く */
+    cursor: pointer;
+    font-size: 1.2em; /* フォントサイズを大きく */
+    margin: 15px 8px; /* マージンを増やす */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-decoration: none;
+    min-width: 200px; /* ボタンの最小幅を確保 */
+}
+
+.btn:hover {
+    background-color: #2980b9;
+    transform: translateY(-3px); /* ホバー時の浮き上がりを大きく */
+}
+
+.choice-btn {
+    background-color: #f39c12;
+    margin-bottom: 0; /* グリッドのgapで調整するため0に */
+    width: auto; /* グリッドレイアウトに任せるためautoに */
+    font-size: 1.1em; /* フォントサイズを調整 */
+    height: 70px; /* ボタンの高さを揃える */
+    display: flex; /* テキスト中央寄せのためflexboxを使用 */
+    justify-content: center;
+    align-items: center;
+}
+
+.choice-btn:hover {
+    background-color: #e67e22;
+}
+
+.level-btn {
+    background-color: #27ae60;
+    margin: 15px;
+    min-width: 250px; /* レベル選択ボタンの最小幅を大きく */
+}
+
+.level-btn:hover {
+    background-color: #2ecc71;
+}
+
+.back-to-home-btn {
+    background-color: #95a5a6;
+    margin-top: 30px; /* 履歴表示ボタン用のマージン */
+}
+
+.back-to-home-btn:hover {
+    background-color: #7f8c8d;
+}
+
+/* Choices Grid for Questions */
+.choices-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* ここを2列に固定 */
+    gap: 20px; /* 間隔を広げる */
+    margin-top: 40px;
+}
+
+/* Result Screen */
+#result-screen {
+    padding: 40px;
+    border-radius: 15px;
+    color: white; /* 結果画面のテキスト色 */
+}
+
+#result-title {
+    color: white;
+    margin-bottom: 25px;
+}
+
+#result-image {
+    max-width: 300px; /* 画像を大きく */
+    height: auto;
+    border-radius: 10px;
+    margin: 30px auto;
+    display: block;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* 影を濃く */
 }
 
 #result-description {
-  text-align: center;
-  font-size: 1rem;
-  margin: 12px 0 24px;
-  line-height: 1.4;
-  user-select: none;
+    color: white;
+    font-size: 1.2em; /* 大きく */
+    margin-top: 25px;
+    padding: 0 20px;
+}
+
+/* History Section */
+#history-section {
+    margin-top: 50px;
+    padding-top: 30px;
+    border-top: 2px solid #eee; /* 枠線を太く */
+    /* transition: all 0.5s ease-in-out; */ /* スムーズな表示切り替えのためにコメントアウト解除しても良い */
+}
+
+.history-title {
+    color: #2c3e50;
+    margin-bottom: 25px;
+}
+
+#history-list ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+    max-height: 300px; /* 履歴表示の高さ制限を大きく */
+    overflow-y: auto;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.08);
+}
+
+#history-list li {
+    background-color: #ecf0f1;
+    margin-bottom: 10px;
+    padding: 12px 18px;
+    border-radius: 8px;
+    text-align: left;
+    color: #555;
+    font-size: 1em; /* 履歴のフォントサイズも少し大きく */
+    border-left: 6px solid #bdc3c7; /* 枠線を太く */
+}
+
+/* Footer Links (for Terms of Service etc.) */
+.footer-links {
+    margin-top: 40px;
+    font-size: 0.9em;
+}
+
+.footer-links .text-link {
+    color: #3498db;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links .text-link:hover {
+    color: #2980b9;
+    text-decoration: underline;
+}
+
+
+/* Animations */
+.fade-in {
+    animation: fadeIn 0.5s ease-out;
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+    from { opacity: 0; transform: translateY(-15px); } /* 少し大きく動く */
+    to { opacity: 1; transform: translateY(0); }
 }
-.fade-in {
-  animation: fadeIn 0.5s ease-in-out;
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    body {
+        font-size: 16px; /* 基本フォントサイズを調整 */
+        padding: 15px;
+    }
+    .container {
+        padding: 30px;
+    }
+    h1 {
+        font-size: 2.5em;
+    }
+    h2 {
+        font-size: 1.8em;
+    }
+    .btn {
+        padding: 12px 25px;
+        font-size: 1.1em;
+        min-width: unset; /* 最小幅をリセット */
+    }
+    .choices-grid {
+        grid-template-columns: 1fr; /* 小さい画面ではボタンを縦に1列に */
+        gap: 15px;
+    }
+    .choice-btn {
+        height: auto; /* 高さを自動調整 */
+        padding: 15px 20px;
+    }
+    #result-image {
+        max-width: 200px;
+    }
+    .terms-container {
+        padding: 20px 30px;
+    }
+    .terms-container h1 {
+        font-size: 2em;
+    }
+    .terms-container h2 {
+        font-size: 1.5em;
+    }
+    .terms-container p, .terms-container li {
+        font-size: 1em;
+    }
 }
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 480px) {
+    body {
+        font-size: 14px;
+        padding: 10px;
+    }
+    .container {
+        padding: 20px;
+    }
+    h1 {
+        font-size: 2em;
+    }
+    h2 {
+        font-size: 1.5em;
+    }
+    input[type="text"] {
+        padding: 10px;
+        font-size: 1em;
+    }
+    .btn {
+        font-size: 1em;
+        padding: 10px 20px;
+    }
+    .choice-btn {
+        font-size: 0.95em;
+        padding: 12px 15px;
+    }
+    .terms-container {
+        padding: 15px 20px;
+    }
+    .terms-container h1 {
+        font-size: 1.8em;
+    }
+    .terms-container h2 {
+        font-size: 1.3em;
+    }
 }
