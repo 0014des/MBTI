@@ -59,7 +59,7 @@ if (startBtn) { // startBtnが存在する場合のみイベントリスナー�
   startBtn.addEventListener("click", () => {
     username = nameInput.value.trim();
     if (!username) {
-      alert("名前を入力してください");
+      alert("名前を入力してください(音声が流れます)");
       // --- ここから追加 ---
       soujanaiAudio.play(); // 音声を再生
       // --- ここまで追加 ---

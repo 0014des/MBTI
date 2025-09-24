@@ -6,7 +6,7 @@ body {
     margin: 0;
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* 上部に寄せることで長いコンテンツに対応 */
+    align-items: flex-start; /* 上部に寄せる (変更なし、これで十分なはず) */
     min-height: 100vh;
     padding: 30px; /* 全体のパディングを増やす */
     box-sizing: border-box;
@@ -15,7 +15,7 @@ body {
 }
 
 .container {
-    background-color: #ffffff;
+    background-color: #ffffff; /* ここを通常の白に戻す */
     padding: 50px; /* パディングを増やす */
     border-radius: 15px; /* 角を少し丸く */
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* 影を濃くする */
@@ -23,7 +23,7 @@ body {
     width: 100%;
     text-align: center;
     margin: auto; /* 中央寄せ */
-    margin-top: 30px; /* 上部に寄せる際に少しマージン */
+    margin-top: 15px; /* --- 調整: 上部マージンを減らして全体を上に移動 --- */
     margin-bottom: 30px;
 }
 
@@ -135,11 +135,51 @@ input[type="text"] {
     margin-top: 40px;
 }
 
+/* --- ここを修正: 質問画面の背景画像設定と質問番号の位置 --- */
+#question-screen {
+    background-image: url('img/text.png'); /* 背景画像を指定 */
+    background-repeat: no-repeat; /* 画像の繰り返しなし */
+    /* 質問画面の背景画像の位置を調整。'top -400px'は非常に上なので、
+       一般的な「上寄り」に調整。必要に応じて '20px' を増減して微調整してください。
+       もし本当にコンテンツよりも遥か上（画面外）に画像を配置したいなら、
+       負の大きな値を設定してください。*/
+    background-position: center top -410px;
+    background-size: 90%; /* ユーザーが提示したサイズを維持 (必要であれば 'cover' などに変更) */
+    background-color: rgba(255, 255, 255, 0.85); /* 半透明の白で画像を透かして見せる */
+    padding: 40px; /* 質問画面の内側のパディングを調整 */
+    border-radius: 15px; /* コンテナと同じ角丸にする */
+    box-sizing: border-box; /* パディングを幅に含める */
+    position: relative; /* 子要素の絶対配置の基準にするために追加 */
+}
+
+/* 質問番号の設置位置を調整 */
+#question-number {
+    position: absolute; /* 親要素(#question-screen)を基準に絶対配置 */
+    top: -10px; /* 上から15pxの位置に */
+    left: 610px; /* 左から20pxの位置に */
+    font-size: 1.1em; /* 質問番号のフォントサイズ調整 */
+    color: #555; /* 色の調整 */
+    text-shadow: 0.5px 0.5px 1px rgba(255,255,255,0.5); /* 背景との馴染みを良くする影 */
+    z-index: 1; /* 質問テキストの上に表示されるようにする（必要に応じて） */
+}
+
+
+/* 質問テキストの読みやすさを確保 */
+#question-text {
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3); /* テキストに影をつけて視認性向上 */
+    color: #34495e; /* テキスト色を濃く保つ */
+    margin-top: 50px; /* 質問番号が上に移動した分、質問テキストを下にずらす */
+}
+/* --- 修正ここまで --- */
+
+
 /* Result Screen */
 #result-screen {
     padding: 40px;
     border-radius: 15px;
-    color: white; /* 結果画面のテキスト色 */
+    color: white;
+    background-image: none; /* 念のため背景画像を無効化 */
+    background-color: transparent; /* 動的な背景色の設定のため */
 }
 
 #result-title {
@@ -168,7 +208,6 @@ input[type="text"] {
     margin-top: 50px;
     padding-top: 30px;
     border-top: 2px solid #eee; /* 枠線を太く */
-    /* transition: all 0.5s ease-in-out; */ /* スムーズな表示切り替えのためにコメントアウト解除しても良い */
 }
 
 .history-title {
@@ -182,14 +221,14 @@ input[type="text"] {
     margin-top: 20px;
     max-height: 300px; /* 履歴表示の高さ制限を大きく */
     overflow-y: auto;
-    background-color: #f9f9f9;
+    background-color: rgba(255, 255, 255, 0.9); /* 履歴リストの背景も半透明に */
     border-radius: 10px;
     padding: 20px;
     box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.08);
 }
 
 #history-list li {
-    background-color: #ecf0f1;
+    background-color: rgba(236, 240, 241, 0.9); /* 履歴アイテムの背景も半透明に */
     margin-bottom: 10px;
     padding: 12px 18px;
     border-radius: 8px;
@@ -201,7 +240,7 @@ input[type="text"] {
 
 /* Footer Links (for Terms of Service etc.) */
 .footer-links {
-    margin-top: 40px;
+    margin-top: 40px; /* マージンを増やして他の要素と離す */
     font-size: 0.9em;
 }
 
@@ -235,6 +274,7 @@ input[type="text"] {
     }
     .container {
         padding: 30px;
+        margin-top: 10px; /* レスポンシブでも上に寄せる */
     }
     h1 {
         font-size: 2.5em;
@@ -270,6 +310,18 @@ input[type="text"] {
     .terms-container p, .terms-container li {
         font-size: 1em;
     }
+    #question-screen { /* レスポンシブでもパディング調整 */
+        padding: 30px;
+        background-position: center top 10px; /* レスポンシブで背景画像の位置を調整 */
+    }
+    #question-number { /* レスポンシブでの位置調整 */
+        top: 10px;
+        left: 15px;
+        font-size: 1em;
+    }
+    #question-text { /* レスポンシブでの質問テキストの位置調整 */
+        margin-top: 40px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -279,6 +331,7 @@ input[type="text"] {
     }
     .container {
         padding: 20px;
+        margin-top: 5px; /* レスポンシブでさらに上に寄せる */
     }
     h1 {
         font-size: 2em;
@@ -306,5 +359,17 @@ input[type="text"] {
     }
     .terms-container h2 {
         font-size: 1.3em;
+    }
+    #question-screen { /* レスポンシブでもパディング調整 */
+        padding: 20px;
+        background-position: center top 5px; /* レスポンシブで背景画像の位置を調整 */
+    }
+    #question-number { /* レスポンシブでの位置調整 */
+        top: 5px;
+        left: 10px;
+        font-size: 0.9em;
+    }
+    #question-text { /* レスポンシブでの質問テキストの位置調整 */
+        margin-top: 30px;
     }
 }
