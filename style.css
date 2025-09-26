@@ -416,9 +416,6 @@ input[type="text"] {
     margin-bottom: 20px; /* バーと質問番号の間の余白 */
     overflow: hidden; /* 角丸を内側のバーにも適用させるため */
     box-shadow: inset 0 1px 3px rgba(0,0,0,0.2); /* 内側に影をつけて立体感を出す */
-    /* --- ↓↓↓ 以下の2行を追加・変更してください ↓↓↓ --- */
-    margin-top: auto;   /* 上の余白を自動で最大化し、要素を一番下に押しやる */
-    margin-bottom: 0; /* 元々あった下の余白は不要なので0に */
 }
 
 #progress-bar {
@@ -428,8 +425,4 @@ input[type="text"] {
     border-radius: 10px;
     /* 横幅が変わる時のアニメーションを滑らかにする */
     transition: width 0.4s ease-out;
-}
-/* style.css の一番下などに追加 */
-#choices {
-    margin-bottom: 25px; /* 選択肢とプログレスバーの間の余白 */
 }
