@@ -130,8 +130,8 @@ input[type="text"] {
 /* Choices Grid for Questions */
 .choices-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* ここを2列に固定 */
-    gap: 20px; /* 間隔を広げる */
+    grid-template-columns: 1fr; /* --- ここを1列に固定 --- */
+    gap: 40px; /* 間隔を広げる */
     margin-top: 40px;
 }
 
@@ -158,8 +158,8 @@ input[type="text"] {
     top: -10px; /* 上から15pxの位置に */
     left: 610px; /* 左から20pxの位置に */
     font-size: 1.1em; /* 質問番号のフォントサイズ調整 */
-    color: #555; /* 色の調整 */
-    text-shadow: 0.5px 0.5px 1px rgba(255,255,255,0.5); /* 背景との馴染みを良くする影 */
+    color: #ff0000; /* 色の調整 */
+    text-shadow: 0.5px 0.5px 1px rgba(0, 0, 0, 0.5); /* 背景との馴染みを良くする影 */
     z-index: 1; /* 質問テキストの上に表示されるようにする（必要に応じて） */
 }
 
@@ -169,6 +169,14 @@ input[type="text"] {
     text-shadow: 1px 1px 2px rgba(0,0,0,0.3); /* テキストに影をつけて視認性向上 */
     color: #34495e; /* テキスト色を濃く保つ */
     margin-top: 50px; /* 質問番号が上に移動した分、質問テキストを下にずらす */
+    /* --- 以下を追記 --- */
+    /* 1. 最低でも2行分の高さを確保して、ガタつきを防ぐ */
+    min-height: 3.6em; /* (h2のline-height: 1.8) × 2行分 = 3.6 */
+
+    /* 2. 確保した高さの中でテキストを上下中央に配置する */
+    display: flex;
+    justify-content: center; /* 水平中央揃え */
+    align-items: center;     /* 垂直中央揃え */
 }
 /* --- 修正ここまで --- */
 
@@ -372,4 +380,56 @@ input[type="text"] {
     #question-text { /* レスポンシブでの質問テキストの位置調整 */
         margin-top: 30px;
     }
+}
+/* 左上固定 ホームに戻るボタン */
+.home-btn-fixed {
+    position: fixed; /* 画面の特定の位置に固定する */
+    top: 20px;       /* 画面の上端から20pxの位置 */
+    left: 20px;      /* 画面の左端から20pxの位置 */
+    z-index: 1000;   /* 他のどの要素よりも手前に表示する */
+
+    background-color: #95a5a6; /* 背景色 */
+    color: white;              /* 文字色 */
+    padding: 10px 20px;        /* ボタンの内側の余白 */
+    border-radius: 8px;        /* 角を丸くする */
+    text-decoration: none;     /* リンクの下線を消す */
+    font-size: 16px;           /* 文字のサイズ */
+    font-weight: bold;         /* 文字を太くする */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 影をつけて立体感を出す */
+    transition: all 0.3s ease; /* ホバー時のアニメーションを滑らかに */
+}
+
+/* ボタンにカーソルが乗った時のスタイル */
+.home-btn-fixed:hover {
+    background-color: #7f8c8d; /* 背景色を少し濃くする */
+    transform: translateY(-2px); /* 少しだけ上に浮かび上がらせる */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* 影を少し濃くする */
+}
+/* style.css にこのコードを追加 */
+
+/* --- プログレスバーのスタイル --- */
+#progress-container {
+    width: 100%; /* 横幅を画面いっぱいに */
+    height: 18px; /* バーの高さ */
+    background-color: #e0e0e0; /* バーの背景色（未達成部分） */
+    border-radius: 10px;
+    margin-bottom: 20px; /* バーと質問番号の間の余白 */
+    overflow: hidden; /* 角丸を内側のバーにも適用させるため */
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.2); /* 内側に影をつけて立体感を出す */
+    /* --- ↓↓↓ 以下の2行を追加・変更してください ↓↓↓ --- */
+    margin-top: auto;   /* 上の余白を自動で最大化し、要素を一番下に押しやる */
+    margin-bottom: 0; /* 元々あった下の余白は不要なので0に */
+}
+
+#progress-bar {
+    height: 100%; /* 高さを親要素に合わせる */
+    width: 0%; /* 初期状態は0% */
+    background-color: #ff7eff; /* バーの色（達成部分） */
+    border-radius: 10px;
+    /* 横幅が変わる時のアニメーションを滑らかにする */
+    transition: width 0.4s ease-out;
+}
+/* style.css の一番下などに追加 */
+#choices {
+    margin-bottom: 25px; /* 選択肢とプログレスバーの間の余白 */
 }

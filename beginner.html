@@ -7,22 +7,32 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <a href="index.html" class="home-btn-fixed">← ホームへ</a>
+
     <div class="container">
         <!-- スタート画面 -->
         <div id="start-screen" class="screen">
             <h1>MBTI簡易診断 - 初級 (20問)</h1>
-            <p>あなたの名前を入力して診断を始めましょう。</p>
+            <p>名前を入力して診断を始めましょう
+                ※ニックネームや好きな名前</p>
             <input type="text" id="username" placeholder="あなたの名前" required>
             <button id="start-btn" class="btn">診断開始</button>
         </div>
 
         <!-- 質問画面 -->
         <div id="question-screen" class="screen hidden">
+            <!-- ★★★ 上にあったプログレスバーは削除 ★★★ -->
             <p id="question-number"></p>
             <h2 id="question-text" class="fade-in"></h2>
             <div id="choices" class="choices-grid">
                 <!-- 選択肢ボタンはJavaScriptで生成されます -->
             </div>
+            
+            <!-- ↓↓↓ プログレスバーはこの位置に1つだけ配置します ↓↓↓ -->
+            <div id="progress-container">
+                <div id="progress-bar"></div>
+            </div>
+            <!-- ↑↑↑ ここまで ↑↑↑ -->
         </div>
 
         <!-- 結果画面 -->

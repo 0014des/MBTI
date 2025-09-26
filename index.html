@@ -12,6 +12,7 @@
         <p>あなたの性格タイプを診断しましょう！</p>
         <div class="level-selection">
             <h2>診断レベルを選択してください</h2>
+            <h3>
             <a href="beginner.html" class="btn level-btn">初級 (20問)</a>
             <a href="intermediate.html" class="btn level-btn">中級 (40問)</a>
             <a href="advanced.html" class="btn level-btn">上級 (60問)</a>
@@ -53,11 +54,34 @@
         }
 
         document.addEventListener("DOMContentLoaded", () => {
+            // --- ここから追加 ---
+            // ---------------------------------
+            // サウンドの読み込みとイベント設定
+            // ---------------------------------
+            const menuSound = new Audio('sound/menu.mp3'); // 難易度選択の音
+            const clickSound = new Audio('sound/click.mp3'); // 履歴表示ボタンの音
+
+            // 難易度選択ボタンにサウンドを追加
+            const levelLinks = document.querySelectorAll('.level-btn');
+            levelLinks.forEach(link => {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault(); // リンク移動を一旦停止
+                    menuSound.play(); // 音を再生
+                    const destination = this.href;
+                    setTimeout(() => { // 音が鳴るのを待ってから移動
+                        window.location.href = destination;
+                    }, 300); // 0.3秒後に移動
+                });
+            });
+            // --- ここまで追加 ---
+
+
             displayHistoryForIndex(); // ページロード時に履歴を読み込み
             const toggleHistoryBtn = document.getElementById("toggle-history-btn");
             const historySection = document.getElementById("history-section");
 
             toggleHistoryBtn.addEventListener("click", () => {
+                clickSound.play(); // ←★この行を追加
                 historySection.classList.toggle("hidden"); // hiddenクラスをトグル
                 if (historySection.classList.contains("hidden")) {
                     toggleHistoryBtn.textContent = "診断履歴を表示";
