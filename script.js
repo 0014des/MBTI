@@ -8,7 +8,7 @@ const cancelSound = new Audio('sound/cancel.mp3'); // 戻るときの音
 const startSound = new Audio('sound/J06_destination_short.dspadpcm.mp3'); // 診断開始ボタンの音
 startSound.volume = 0.3; // 音量を30%に設定
 const soujanaiAudio = new Audio('sound/soujanai.mp3'); // 名前未入力時の音
-soujanaiAudio.volume = 0.2; // 音量を20%に設定
+soujanaiAudio.volume = 0.1; // 音量を20%に設定
 
 // ---------------------------------
 // グローバル変数
